@@ -11,7 +11,16 @@ import com.kashyap.springboot.springbootdev.sorting.SortingAlgorithm;
 public class BinarySearch {
 
 	@Autowired
-	private SortingAlgorithm sortingAlgo;
+	/**
+	 * This is a situation where the autowiring is done by name
+	 * if you carefully notice both the sorting algorithm 
+	 * implementations doesn't have @Primary annotation but
+	 * in the result we could see bubble sort being used as result of
+	 * the injected name. However the if both name injection and @Primary
+	 * injection is used, @Primary will have precedence over name injection
+	 * method.
+	 * */
+	private SortingAlgorithm /*sortingAlgo*/ bubbleSort;
 	
 	/*public BinarySearch(SortingAlgorithm sortingAlgo){
 		super();
@@ -32,7 +41,7 @@ public class BinarySearch {
 	 * */
 
 	public int binarySearch(int prt[], int key) {
-		prt = sortingAlgo.sort(prt);
+		prt = bubbleSort.sort(prt);
 		return Arrays.binarySearch(prt, key);
 	}
 }

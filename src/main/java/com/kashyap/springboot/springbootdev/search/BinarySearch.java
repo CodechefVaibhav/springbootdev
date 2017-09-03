@@ -3,6 +3,7 @@ package com.kashyap.springboot.springbootdev.search;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.kashyap.springboot.springbootdev.sorting.SortingAlgorithm;
@@ -20,7 +21,8 @@ public class BinarySearch {
 	 * injection is used, @Primary will have precedence over name injection
 	 * method.
 	 * */
-	private SortingAlgorithm /*sortingAlgo*/ bubbleSort;
+	@Qualifier("bubble")
+	private SortingAlgorithm sortingAlgo /*bubbleSort*/;
 	
 	/*public BinarySearch(SortingAlgorithm sortingAlgo){
 		super();
@@ -41,7 +43,7 @@ public class BinarySearch {
 	 * */
 
 	public int binarySearch(int prt[], int key) {
-		prt = bubbleSort.sort(prt);
+		prt = sortingAlgo.sort(prt);
 		return Arrays.binarySearch(prt, key);
 	}
 }

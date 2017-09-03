@@ -1,10 +1,12 @@
 package com.kashyap.springboot.springbootdev.sorting;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
 @Primary
+@Qualifier("insertion")
 public class InsertionSort implements SortingAlgorithm{
 
 	/*public static void main(String... q) {

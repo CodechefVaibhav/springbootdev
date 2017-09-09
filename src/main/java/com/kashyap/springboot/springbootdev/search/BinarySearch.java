@@ -2,6 +2,11 @@ package com.kashyap.springboot.springbootdev.search;
 
 import java.util.Arrays;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -14,6 +19,7 @@ import com.kashyap.springboot.springbootdev.sorting.SortingAlgorithm;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class BinarySearch {
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	/**
 	 * This is a situation where the autowiring is done by name
@@ -48,5 +54,15 @@ public class BinarySearch {
 	public int binarySearch(int prt[], int key) {
 		prt = sortingAlgo.sort(prt);
 		return Arrays.binarySearch(prt, key);
+	}
+	
+	@PostConstruct
+	public void postConstruct(){
+		logger.debug("post construct called in binary search");
+	}
+	
+	@PreDestroy
+	public void preDestroy(){
+		logger.debug("pre-destroy called in binary search");
 	}
 }
